@@ -65,19 +65,19 @@ public class aiesfinalproject {
 			fp.setLocation(5,1);
 			counter++;
 			System.out.println("\n The counter is:"+counter);
-			System.out.print("Pre-examined total( .”):");
+			System.out.print("Pre-examined total(√ä.√ì):");
 			printks(ks);
 			microscope=ma.peek();
 			System.out.print(" The microscope is:"+"("+microscope.x+","+microscope.y+") ");
 			System.out.print(" The score of this  is:"+score(microscope));
-			System.out.print(" Search line(Ã.¡):");
+			System.out.print(" Search line(√å.√Å):");
 			printma(ma);
 			ma.pop();
 			if(ks.contains(microscope.toString())) {System.out.print(" This step has already been examined .");continue;}
 			
 				else {					
 				ks.add(microscope.toString());
-				System.out.print(" Child situations( .–):");
+				System.out.print(" Child situations(√ä.√ê):");
 					if(microscope.x!=0) {
 						if(maze[microscope.x-1][microscope.y]==1) {
 							child4.setLocation(microscope.x-1,microscope.y);
@@ -123,7 +123,7 @@ public class aiesfinalproject {
 		System.out.print(" ("+p.x+","+p.y+")");
 	}
 }
-	static public void printks(ArrayList<String> ks) {//Printing pre-examined total( .”)
+	static public void printks(ArrayList<String> ks) {//Printing pre-examined total(√ä.√ì)
 	for (int i=0;i<ks.size();i++) {
 		String coord="";
 		coord=ks.get(i);
@@ -140,72 +140,7 @@ public class aiesfinalproject {
 	
 	
 	
-	static public int prioritizeright(Integer[][] maze1,ArrayList<String> ks1,Stack<Point> ma1,int limit1) {
-		System.out.println("\n Continuing the procedure of Branch&Bound ...");
-		Integer[][] maze= new Integer [6][6];
-		 maze=maze1;
-		 Stack<Point>ma=new Stack<Point>();// Search Line
-		 	ma=ma1;
-			int limit=limit1;
-			int counter=0;
-			ArrayList<String>ks=new ArrayList<String>(); //Pre-examined Total
-			ks=ks1;
-			Point fp=new Point(); //finish Point
-			fp.setLocation(5,1);
-			Point sp=new Point(); //finish Point
-			sp.setLocation(1,1);
-			Point microscope=new Point();  // Microscope
-			Point child1=new Point();//Right Child
-			Point child2=new Point();//Up Child
-			Point child3=new Point();//Left Child
-			Point child4=new Point();//Down Child
-			ma.add(0, sp);
-			while(!ma.isEmpty()&&!ks.contains(fp.toString())) {
-				counter++;
-				System.out.println("\n The counter is: "+counter);
-				System.out.print(" Pre-examined total( .”):");
-				printks(ks);
-				microscope=ma.peek();
-				System.out.print(" The microscope is:"+"("+microscope.x+","+microscope.y+") ");
-				System.out.print(" Search line(Ã.¡):");
-				printma(ma);
-				ma.pop();
-				if(ks.contains(microscope.toString())&&!(microscope.x<=1&&microscope.y<=1)) {System.out.print(" This step has already been examined and it will not lead to better qetaway because its score is:"+" ("+score(microscope)+")");continue;}
-				if(score(microscope)>=limit) {System.out.print(" This step exceeds or balances the current score as its score is "+" ("+score(microscope)+") "+" so it has branched out.");continue;}
-				if(!ks.contains(microscope.toString())) {ks.add(microscope.toString());};
-				System.out.print(" Child situations( .–):");
-				if(microscope.x!=5) {//Down
-					if(maze[microscope.x+1][microscope.y]==1) {
-						child4.setLocation(microscope.x+1,microscope.y);
-						System.out.print("("+child4.x+","+child4.y+")");
-						ma.push(child4);
-						}
-									}
-				if(microscope.y!=0) {//left
-					if(maze[microscope.x][microscope.y-1]==1) {
-						child3.setLocation(microscope.x,microscope.y-1);
-						System.out.print("("+child3.x+","+child3.y+")");
-						ma.push(child3);}
-									}
-				if(microscope.x!=0) {//Up
-					if(maze[microscope.x-1][microscope.y]==1) {
-						child2.setLocation(microscope.x-1,microscope.y);
-						System.out.print("("+child2.x+","+child2.y+")");
-						ma.push(child2);}
-									}
-				if(microscope.y!=5) {//Right
-					if(maze[microscope.x][microscope.y+1]==1) {
-						child1.setLocation(microscope.x,microscope.y+1);
-						System.out.print("("+child1.x+","+child1.y+")");
-						ma.push(child1);}
-									}
-				}
-			if(counter<limit1) {System.out.println("\n You got out faster with "+counter+" steps.");
-				return counter;
-			}
-			else {System.out.println("\n NO BETTER PATH WAS FOUND.");return 100;}
-		
-	}
+	
 		
 	
 	
